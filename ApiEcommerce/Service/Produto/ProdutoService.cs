@@ -118,7 +118,7 @@ public class ProdutoService : IProdutoService
     {
         try
         {
-            List<string> produtoList = await _context.Produto
+            List<string?> produtoList = await _context.Produto
                 .Where(produto => !string.IsNullOrEmpty(produto.CategoriaProduto))
                     .Select(produto => produto.CategoriaProduto)
                         .Distinct()
@@ -136,6 +136,18 @@ public class ProdutoService : IProdutoService
 
     public async Task<ServiceResponse<List<ProdutoModel>>> GetProdutosByCategoria(string categoria)
     {
-        return await Task.FromResult(new ServiceResponse<List<ProdutoModel>>());
+        try
+        {
+            List<ProdutoModel> produtos = await _context.Produto
+                .Where(produto => produto.CategoriaProduto == categoria)
+                .ToListAsync();
+
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 }
