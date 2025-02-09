@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ApiEcommerce.Models
 {
@@ -11,6 +12,9 @@ namespace ApiEcommerce.Models
         public float PrecoVenda { get; set; }
         public string Tamanho { get; set; }
         public int QuantidadeEstoque { get; set; }
-        public string Imagem { get; set; } //Validar
+        [JsonIgnore]
+        public byte[]? Imagem { get; set; }
+        public string? CategoriaProduto { get; set; }
+        public string? CondicaoProduto { get; set; }
     }
 }

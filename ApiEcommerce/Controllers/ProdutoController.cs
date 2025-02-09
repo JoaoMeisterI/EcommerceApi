@@ -22,6 +22,18 @@ public class ProdutoController : ControllerBase
         return Ok(await _produtoService.GetProdutosAll());
     }
 
+    [HttpGet("produto/{categoria}")]
+    public async Task<ActionResult<ServiceResponse<List<ProdutoModel>>>> GetProdutoByCategoria(string categoria)
+    {
+        return Ok(await _produtoService.GetProdutosByCategoria(categoria));
+    }
+
+    [HttpGet("categorias")]
+    public async Task<ActionResult<ServiceResponse<ProdutoModel>>> GetCategoriasProduto()
+    {
+        return Ok(await _produtoService.GetCategoriasProduto());
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<ServiceResponse<ProdutoModel>>> GetProdutoById(int id)
     {

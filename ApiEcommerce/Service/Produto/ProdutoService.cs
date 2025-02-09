@@ -113,6 +113,29 @@ public class ProdutoService : IProdutoService
             return GerarResposta<List<ProdutoModel>>(null, ex.Message, false);
         }
     }
-    
 
+    public async Task<ServiceResponse<List<string>>> GetCategoriasProduto()
+    {
+        try
+        {
+            List<string> produtoList = await _context.Produto
+                .Where(produto => !string.IsNullOrEmpty(produto.CategoriaProduto))
+                    .Select(produto => produto.CategoriaProduto)
+                        .Distinct()
+                            .ToListAsync();
+
+            if (produtoList.Count == 0) return GerarResposta<List<string>>(null,"Sem Categorias Cadastradas",false);
+
+            return GerarResposta(produtoList);
+        }
+        catch (Exception ex)
+        {
+            return GerarResposta<List<string>>(null, ex.Message, false);
+        }
+    }
+
+    public async Task<ServiceResponse<List<ProdutoModel>>> GetProdutosByCategoria(string categoria)
+    {
+        return await Task.FromResult(new ServiceResponse<List<ProdutoModel>>());
+    }
 }

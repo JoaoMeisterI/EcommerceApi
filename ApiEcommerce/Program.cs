@@ -1,11 +1,15 @@
 using ApiEcommerce.DataContext;
+using ApiEcommerce.Swagger;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SchemaFilter<IgnoreSchemaFile>();
+});
 
 EscopoContext.AddClassesEscopo(builder.Services);
 
