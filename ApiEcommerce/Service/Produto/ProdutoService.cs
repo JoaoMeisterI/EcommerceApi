@@ -142,12 +142,12 @@ public class ProdutoService : IProdutoService
                 .Where(produto => produto.CategoriaProduto == categoria)
                 .ToListAsync();
 
+            return GerarResposta(produtos);
 
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            return GerarResposta<List<ProdutoModel>>(null, ex.Message, false);
         }
     }
 }
