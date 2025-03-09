@@ -11,6 +11,6 @@ namespace ApiEcommerce.DataContext
         }
         public DbSet<ProdutoModel> Produto {get;set;}
         public DbSet<UsuarioModel> Usuario { get; set; }
-
+        public DbSet<CarrinhoModel> Carrinho { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ApiEcommerce.Service.Produto;
+﻿using ApiEcommerce.Service.Carrinho;
+using ApiEcommerce.Service.Produto;
 using ApiEcommerce.Service.Usuario;
 
 namespace ApiEcommerce.DataContext
@@ -9,6 +10,8 @@ namespace ApiEcommerce.DataContext
         {
             service.AddScoped<IProdutoService, ProdutoService>();
             service.AddScoped<IUsuarioService, UsuarioService>();
+            service.AddScoped<ICarrinhoService, CarrinhoService>();
+
         }
 
     }

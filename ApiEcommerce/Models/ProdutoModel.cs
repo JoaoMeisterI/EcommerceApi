@@ -14,6 +14,7 @@ namespace ApiEcommerce.Models
         public string Tamanho { get; set; }
         public int QuantidadeEstoque { get; set; }
         public byte[]? Imagem { get; set; }
+        public string? ImagemBase64 { get; set; }
         public string? CategoriaProduto { get; set; }
         public string? CondicaoProduto { get; set; }
     }

@@ -22,10 +22,10 @@ public class UsuarioController : ControllerBase
         return Ok(await _usuarioService.GetUsuariosAll());
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<ServiceResponse<UsuarioModel>>> GetUsuarioById(int id)
+    [HttpGet("tentativaAcesso")]
+    public async Task<ActionResult<ServiceResponse<UsuarioModel>>> GetUsuarioByCredenciais(string user, string senha)
     {
-        return Ok(await _usuarioService.GetUsuarioById(id));
+        return Ok(await _usuarioService.GetUsuarioByCredenciais(user,senha));
     }
 
     [HttpPost]

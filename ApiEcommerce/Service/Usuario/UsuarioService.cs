@@ -74,14 +74,14 @@ namespace ApiEcommerce.Service.Usuario
             }
         }
 
-        public async Task<ServiceResponse<UsuarioModel>> GetUsuarioById(int idUsuario)
+        public async Task<ServiceResponse<UsuarioModel>> GetUsuarioByCredenciais(string user, string senha)
         {
             try
             {
-                UsuarioModel? usuario = await _context.Usuario.FindAsync(idUsuario);
+                UsuarioModel? usuario = await _context.Usuario.FirstAsync(usuarioAcesso => usuarioAcesso.User == user && usuarioAcesso.Senha == senha);
                 if (usuario == null)
                 {
-                    return GerarResposta<UsuarioModel>(null, $"Não foi encontrado o usuário com ID {idUsuario}", false);
+                    return GerarResposta<UsuarioModel>(null, $"Usuário ou Senha Inválidos {user}", false);
                 }
                 return GerarResposta(usuario);
             }
