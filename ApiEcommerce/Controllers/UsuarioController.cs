@@ -18,7 +18,7 @@ public class UsuarioController : ControllerBase
 
     [HttpGet]
     public async Task<ActionResult<ServiceResponse<List<UsuarioModel>>>> GetUsuarioAll()
-    {
+    { 
         return Ok(await _usuarioService.GetUsuariosAll());
     }
 

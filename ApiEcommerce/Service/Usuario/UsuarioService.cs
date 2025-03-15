@@ -74,6 +74,23 @@ namespace ApiEcommerce.Service.Usuario
             }
         }
 
+        public async Task<ServiceResponse<UsuarioModel>> GetUsuarioById(int idUsuario)
+        {
+            try
+            {
+                UsuarioModel? usuario = await _context.Usuario.FindAsync(idUsuario);
+                if (usuario == null)
+                {
+                    return GerarResposta<UsuarioModel>(null, $"Não foi encontrado o usuário com ID {idUsuario}", false);
+                }
+                return GerarResposta(usuario);
+            }
+            catch (Exception ex)
+            {
+                return GerarResposta<UsuarioModel>(null, ex.Message, false);
+            }
+        }
+
         public async Task<ServiceResponse<UsuarioModel>> GetUsuarioByCredenciais(string user, string senha)
         {
             try
